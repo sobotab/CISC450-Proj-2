@@ -1,0 +1,3 @@
+*.o
+*tcpclient
+*tcpserver
