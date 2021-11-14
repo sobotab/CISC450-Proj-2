@@ -16,7 +16,7 @@
    incoming requests from clients. You should change this to a different
    number to prevent conflicts with others in the class. */
 
-#define SERV_TCP_PORT 65000
+#define SERV_TCP_PORT 46238
 
 int main(void) {
 
@@ -37,6 +37,10 @@ int main(void) {
    unsigned int msg_len;  /* length of message */
    int bytes_sent, bytes_recd; /* number of bytes sent or received */
    unsigned int i;  /* temporary loop variable */
+
+   char visitor_name[80] = "Sobota-Stahl";
+   unsigned int secret_code = 39629;
+   char travel_loc[80] = "London";
 
    /* open a socket */
 

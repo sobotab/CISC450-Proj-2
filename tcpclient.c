@@ -20,10 +20,10 @@ int main(void) {
                                         stores server address */
    struct hostent * server_hp;      /* Structure to store server's IP
                                         address */
-   char server_hostname[STRING_SIZE]; /* Server's hostname */
-   unsigned short server_port;  /* Port number used by server (remote port) */
+   char server_hostname[STRING_SIZE]="localhost"; /* Server's hostname */
+   unsigned short server_port=46238;  /* Port number used by server (remote port) */
 
-   char sentence[STRING_SIZE];  /* send message */
+   char sentence[STRING_SIZE]="localhost";  /* send message */
    char modifiedSentence[STRING_SIZE]; /* receive message */
    unsigned int msg_len;  /* length of message */                      
    int bytes_sent, bytes_recd; /* number of bytes sent or received */
@@ -44,16 +44,11 @@ int main(void) {
 
    /* initialize server address information */
 
-   printf("Enter hostname of server: ");
-   scanf("%s", server_hostname);
    if ((server_hp = gethostbyname(server_hostname)) == NULL) {
       perror("Client: invalid server hostname");
       close(sock_client);
       exit(1);
    }
-
-   printf("Enter port number for server: ");
-   scanf("%hu", &server_port);
 
    /* Clear server address structure and initialize with server address */
    memset(&server_addr, 0, sizeof(server_addr));

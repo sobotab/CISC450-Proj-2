@@ -2,11 +2,17 @@ C= /usr/bin/gcc
 
 all:	tcpclient tcpserver
 
+run-server: group20-tcpserver
+	./group20-tcpserver
+
+run-client: group20-tcpclient
+	./group20-tcpclient
+
 tcpclient: tcpclient.c;
-	${CC} tcpclient.c -o tcpclient
+	${CC} tcpclient.c -o group20-tcpclient
 
 tcpserver: tcpserver.c;
-	${CC} tcpserver.c -o tcpserver
+	${CC} tcpserver.c -o group20-tcpserver
 
 clean:
-	rm tcpclient tcpserver
+	rm group20-tcpclient group20-tcpserver
