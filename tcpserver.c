@@ -1,22 +1,4 @@
-/* tcpserver.c */
-/* Programmed by Adarsh Sethi */
-/* Sept. 19, 2021 */    
-
-#include <ctype.h>          /* for toupper */
-#include <stdio.h>          /* for standard I/O functions */
-#include <stdlib.h>         /* for exit */
-#include <string.h>         /* for memset */
-#include <sys/socket.h>     /* for socket, bind, listen, accept */
-#include <netinet/in.h>     /* for sockaddr_in */
-#include <unistd.h>         /* for close */
-
-#define STRING_SIZE 1024   
-
-/* SERV_TCP_PORT is the port number on which the server listens for
-   incoming requests from clients. You should change this to a different
-   number to prevent conflicts with others in the class. */
-
-#define SERV_TCP_PORT 46238
+#include "tcp.h"
 
 int main(void) {
 

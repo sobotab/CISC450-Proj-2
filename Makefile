@@ -9,10 +9,10 @@ run-client: group20-tcpclient
 	./group20-tcpclient
 
 tcpclient: tcpclient.c;
-	${CC} tcpclient.c -o group20-tcpclient
+	${CC} tcpclient.c tcp.c -o group20-tcpclient
 
 tcpserver: tcpserver.c;
-	${CC} tcpserver.c -o group20-tcpserver
+	${CC} tcpserver.c tcp.c -o group20-tcpserver
 
 clean:
 	rm group20-tcpclient group20-tcpserver

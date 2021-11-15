@@ -1,17 +1,4 @@
-/* tcp_ client.c */ 
-/* Programmed by Adarsh Sethi */
-/* Sept. 19, 2021 */     
-
-#include <stdio.h>          /* for standard I/O functions */
-#include <stdlib.h>         /* for exit */
-#include <string.h>         /* for memset, memcpy, and strlen */
-#include <netdb.h>          /* for struct hostent and gethostbyname */
-#include <sys/socket.h>     /* for socket, connect, send, and recv */
-#include <netinet/in.h>     /* for sockaddr_in */
-#include <unistd.h>         /* for close */
-
-#define STRING_SIZE 1024
-#define CLNT_TCP_PORT 45238 //Delete this because it is included in tcp.c
+#include "tcp.h"
 
 int main(void) {
 
@@ -23,7 +10,7 @@ int main(void) {
                                         address */
    char server_hostname[STRING_SIZE]="localhost"; /* Server's hostname */
    unsigned short server_port=46238;  /* Port number used by server (remote port) */
-   unsigned short int client_port=CLNT_TCP_PORT;
+   //unsigned short int client_port=CLNT_TCP_PORT;
 
    char sentence[STRING_SIZE]="localhost";  /* send message */
    char modifiedSentence[STRING_SIZE]; /* receive message */
