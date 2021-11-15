@@ -4,13 +4,17 @@ int main(void) {
 
    int sock_client;  /* Socket used by client */
 
+   struct sockaddr_in client_addr;  /* Internet address structure that
+                                        stores client address */
+
    struct sockaddr_in server_addr;  /* Internet address structure that
                                         stores server address */
    struct hostent * server_hp;      /* Structure to store server's IP
                                         address */
    char server_hostname[STRING_SIZE]="localhost"; /* Server's hostname */
    unsigned short server_port=46238;  /* Port number used by server (remote port) */
-   //unsigned short int client_port=CLNT_TCP_PORT;
+
+   unsigned short client_port=CLNT_TCP_PORT;
 
    char sentence[STRING_SIZE]="localhost";  /* send message */
    char modifiedSentence[STRING_SIZE]; /* receive message */
@@ -24,12 +28,13 @@ int main(void) {
       exit(1);
    }
 
-   /* Note: there is no need to initialize local client address information 
-            unless you want to specify a specific local port
-            (in which case, do it the same way as in udpclient.c).
-            The local address initialization and binding is done automatically
-            when the connect function is called later, if the socket has not
-            already been bound. */
+   /* clear client address structure and initialize with client address */
+   memset(&client_addr, 0, sizeof(client_addr));
+   client_addr.sin_family = AF_INET;
+   client_addr.sin_addr.s_addr = htonl(INADDR_ANY); /* This allows choice of
+                                        any host interface, if more than one 
+                                        are present */
+   client_addr.sin_port = htons(client_port);
 
    /* initialize server address information */
 
