@@ -35,6 +35,15 @@ int main(void) {
                                         any host interface, if more than one 
                                         are present */
    client_addr.sin_port = htons(client_port);
+   
+   /* bind the socket to the local client port */
+
+   if (bind(sock_client, (struct sockaddr *) &client_addr,
+                                    sizeof (client_addr)) < 0) {
+      perror("Client: can't bind to local address\n");
+      close(sock_client);
+      exit(1);
+   }
 
    /* initialize server address information */
 
