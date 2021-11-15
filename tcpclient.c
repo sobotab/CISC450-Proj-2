@@ -11,6 +11,7 @@
 #include <unistd.h>         /* for close */
 
 #define STRING_SIZE 1024
+#define CLNT_TCP_PORT 45238 //Delete this because it is included in tcp.c
 
 int main(void) {
 
@@ -22,6 +23,7 @@ int main(void) {
                                         address */
    char server_hostname[STRING_SIZE]="localhost"; /* Server's hostname */
    unsigned short server_port=46238;  /* Port number used by server (remote port) */
+   unsigned short int client_port=CLNT_TCP_PORT;
 
    char sentence[STRING_SIZE]="localhost";  /* send message */
    char modifiedSentence[STRING_SIZE]; /* receive message */
