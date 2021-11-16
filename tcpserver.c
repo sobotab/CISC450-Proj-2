@@ -18,6 +18,7 @@ int main(void) {
    message_t *rec_message=(message_t *)malloc(sizeof(message_t));
    message_t *ret_message=(message_t *)malloc(sizeof(message_t));
    unsigned short int step_no=0;
+   unsigned short int tmp_client_port=0;
 
    unsigned int secret_code = 39629;
    char travel_loc[80] = "London";
@@ -97,28 +98,27 @@ int main(void) {
       char newLine[STRING_SIZE];
 
       while (fgets(line, sizeof(line), visitors_log)) {
-              tmp_message.step_no=atoi(strtok(line, ","));
-              tmp_message.client_port_no=atoi(strtok(NULL, ","));
-              tmp_message.server_port_no=atoi(strtok(NULL, ","));
-              tmp_message.server_secret_no=atoi(strtok(NULL, ","));
-              strcpy(tmp_message.text, strtok(NULL, ","));
-	      if (tmp_message.client_port_no != rec_message->client_port_no) {
-	              fprintf(tmp_visitors_log, "%s", line);	      
-	      } else {
-		      char tmpNum[8];
-		      sprintf(tmpNum, "%d", rec_message->step_no);
-		      strcat(newLine, tmpNum);
-		      strcat(newLine, ",");
-		      sprintf(tmpNum, "%d", rec_message->client_port_no);
-		      strcat(newLine, tmpNum);
-		      strcat(newLine, ",");
-		      strcat(newLine, rec_message->text);
-		      fprintf(tmp_visitors_log, "%s", newLine);
+	      strtok(line, ",");
+	      tmp_client_port=atoi(strok(NULL, ","));
+	      if (tmp_client_port != rec_message->client_port_no) {
+		      fprintf(tmp_visitors_log, "%s", line);
 	      }
-
       }
-      system("mv ./tempVisitors.txt ./Visitors.txt");
-      system("# > ./tempVisitors.txt");
+      unsigned short int tmp_str[1];
+      sprintf(tmp_str, "%d", rec_message->step_no);
+      strcat(newLine, tmp_str);
+      strcat(newLine, ",");
+      unsigned short int tmp_str[5];
+      sprintf(tmp_str, "%d", rec_message->client_port_no);
+      strcat(newLine, ",");
+      strcat(newLine, rec_message->text);
+      strcat(newLine, "\n");
+      fprintf(tmp_visitors_log, newLine);
+
+      fclose(visitors_log);
+      fclose(tmp_visitors_log);
+      system("cp ./tempVisitors.txt ./Visitors.txt");
+      system("> ./tempVisitors.txt");
 
 
      if(1) {
@@ -137,7 +137,6 @@ int main(void) {
 
      /* send message */
      send(sock_connection, ret_message, sizeof(message_t), 0);
-      }
 
       /* close the socket */
 
