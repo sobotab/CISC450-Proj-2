@@ -91,23 +91,26 @@ int main(void) {
       printf("Rec text: %s\n", rec_message->text);
 
       message_t tmp_message;
-      FILE* visitors_log = fopen("Visitors.txt", 'r');
-      FILE* tmp_visitors_log = fopen("tempVisitors.txt", 'a');
+      FILE* visitors_log = fopen("Visitors.txt", "r");
+      FILE* tmp_visitors_log = fopen("tempVisitors.txt", "a");
       char line[STRING_SIZE];
       char newLine[STRING_SIZE];
 
       while (fgets(line, sizeof(line), visitors_log)) {
-              tmp_message.step_no=atoi(strtok(line, ','));
-              tmp_message.client_port_no=atoi(strtok(NULL, ','));
-              tmp_message.server_port_no=atoi(strtok(NULL, ','));
-              tmp_message.server_secret_no=atoi(strtok(NULL, ','));
-              strcpy(tmp_message.text, strtok(NULL, ','));
+              tmp_message.step_no=atoi(strtok(line, ","));
+              tmp_message.client_port_no=atoi(strtok(NULL, ","));
+              tmp_message.server_port_no=atoi(strtok(NULL, ","));
+              tmp_message.server_secret_no=atoi(strtok(NULL, ","));
+              strcpy(tmp_message.text, strtok(NULL, ","));
 	      if (tmp_message.client_port_no != rec_message->client_port_no) {
 	              fprintf(tmp_visitors_log, "%s", line);	      
 	      } else {
-		      strcat(newLine, itoa(rec_message->step_no));
+		      char tmpNum[8];
+		      sprintf(tmpNum, "%d", rec_message->step_no);
+		      strcat(newLine, tmpNum);
 		      strcat(newLine, ",");
-		      strcat(newLine, itoa(rec_message->client_port_no));
+		      sprintf(tmpNum, "%d", rec_message->client_port_no);
+		      strcat(newLine, tmpNum);
 		      strcat(newLine, ",");
 		      strcat(newLine, rec_message->text);
 		      fprintf(tmp_visitors_log, "%s", newLine);
