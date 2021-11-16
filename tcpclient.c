@@ -85,16 +85,13 @@ int main(void) {
 	ret_message->client_port_no=htons(client_port);
 	ret_message->server_port_no=htons(0);
 	ret_message->server_secret_no=htons(0);
-	ret_message->text=(char*)calloc(80,sizeof(char));
-	ret_message->text="Message";
+	strcpy(ret_message->text, "Hello World!");
   
    	/* send message */
-	int text_len=80;
-   	send(sock_client, ret_message, sizeof(ret_message)+sizeof(char)*text_len, 0);
+   	send(sock_client, ret_message, sizeof(message_t), 0);
 
    	/* get response from server */
-	rec_message->text=(char*)calloc(80,sizeof(char));
-   	recv(sock_client, rec_message, sizeof(rec_message)+sizeof(char)*80, 0); 
+   	recv(sock_client, rec_message, sizeof(message_t), 0); 
 
    	/*Convert message from network to host*/
 	rec_message->step_no=ntohs(rec_message->step_no);

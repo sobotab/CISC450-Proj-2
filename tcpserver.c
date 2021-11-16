@@ -17,6 +17,7 @@ int main(void) {
    //Message information to be used in this application
    message_t *rec_message=(message_t *)malloc(sizeof(message_t));
    message_t *ret_message=(message_t *)malloc(sizeof(message_t));
+   unsigned short int step_no=0;
 
    unsigned int secret_code = 39629;
    char travel_loc[80] = "London";
@@ -72,37 +73,67 @@ int main(void) {
          exit(1);
       }
       
-      rec_message->text=calloc(80, sizeof(char));
-      printf("made it here\n");
-      recv(sock_connection, rec_message, sizeof(rec_message)+sizeof(char)*80, 0);
-      printf("did not make it here\n");
+      recv(sock_connection, rec_message, sizeof(message_t), 0); 
 
-      if (1){
-	 /*Convert message from network to host*/
-        rec_message->step_no=ntohs(rec_message->step_no);
-        rec_message->client_port_no=ntohs(rec_message->client_port_no);
-        rec_message->server_port_no=ntohs(rec_message->server_port_no);
-        rec_message->server_secret_no=ntohs(rec_message->server_secret_no);
-        for (int i=0; rec_message->text[i] || i<80; i++) {
-                rec_message->text[i]=tolower(rec_message->text[i]);
-        }
+      /*Convert message from network to host*/
+      rec_message->step_no=ntohs(rec_message->step_no);
+      rec_message->client_port_no=ntohs(rec_message->client_port_no);
+      rec_message->server_port_no=ntohs(rec_message->server_port_no);
+      rec_message->server_secret_no=ntohs(rec_message->server_secret_no);
+      for (int i=0; i<80; i++) {
+              rec_message->text[i]=tolower(rec_message->text[i]);
+      }
 
-	printf("Rec step_no: %hu\n", rec_message->step_no);
-        printf("Rec client_port_no: %hu\n", rec_message->client_port_no);
-        printf("Rec server_port_no: %hu\n", rec_message->server_port_no);
-        printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
-        printf("Tec text: %s\n", rec_message->text);
+      printf("Rec step_no: %hu\n", rec_message->step_no);
+      printf("Rec client_port_no: %hu\n", rec_message->client_port_no);
+      printf("Rec server_port_no: %hu\n", rec_message->server_port_no);
+      printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
+      printf("Rec text: %s\n", rec_message->text);
 
-	ret_message->step_no=htons(1);
-        ret_message->client_port_no=htons(rec_message->client_port_no);
-        ret_message->server_port_no=htons(SERV_TCP_PORT);
-        ret_message->server_secret_no=htons(secret_code);
-        ret_message->text=(char*)calloc(80,sizeof(char));
-        ret_message->text=rec_message->text;
+      message_t tmp_message;
+      FILE* visitors_log = fopen("Visitors.txt", 'r');
+      FILE* tmp_visitors_log = fopen("tempVisitors.txt", 'a');
+      char line[STRING_SIZE];
+      char newLine[STRING_SIZE];
+
+      while (fgets(line, sizeof(line), visitors_log)) {
+              tmp_message.step_no=atoi(strtok(line, ','));
+              tmp_message.client_port_no=atoi(strtok(NULL, ','));
+              tmp_message.server_port_no=atoi(strtok(NULL, ','));
+              tmp_message.server_secret_no=atoi(strtok(NULL, ','));
+              strcpy(tmp_message.text, strtok(NULL, ','));
+	      if (tmp_message.client_port_no != rec_message->client_port_no) {
+	              fprintf(tmp_visitors_log, "%s", line);	      
+	      } else {
+		      strcat(newLine, itoa(rec_message->step_no));
+		      strcat(newLine, ",");
+		      strcat(newLine, itoa(rec_message->client_port_no));
+		      strcat(newLine, ",");
+		      strcat(newLine, rec_message->text);
+		      fprintf(tmp_visitors_log, "%s", newLine);
+	      }
+
+      }
+      system("mv ./tempVisitors.txt ./Visitors.txt");
+      system("# > ./tempVisitors.txt");
 
 
-         /* send message */
-         send(sock_connection, ret_message, sizeof(ret_message)+sizeof(char)*80, 0);
+     if(1) {
+     	     ret_message->step_no=htons(1);
+             ret_message->client_port_no=htons(rec_message->client_port_no);
+             ret_message->server_port_no=htons(SERV_TCP_PORT);
+             ret_message->server_secret_no=htons(secret_code);
+             strcpy(ret_message->text, rec_message->text);
+     } else if (step_no == 2) {
+		
+     } else if (step_no == 3) {
+	
+     } else {
+	     printf("Error: \n");
+     }
+
+     /* send message */
+     send(sock_connection, ret_message, sizeof(message_t), 0);
       }
 
       /* close the socket */
