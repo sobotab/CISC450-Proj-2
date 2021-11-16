@@ -21,7 +21,7 @@ typedef struct message {
 	unsigned short int client_port_no;
 	unsigned short int server_port_no;
 	unsigned short int server_secret_no;
-	char text[80];
+	char *text;
 } message_t;
 
 

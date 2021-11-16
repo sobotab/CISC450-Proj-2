@@ -14,13 +14,10 @@ int main(void) {
                                         stores client address */
    unsigned int client_addr_len;  /* Length of client address structure */
 
-   char sentence[STRING_SIZE];  /* receive message */
-   char modifiedSentence[STRING_SIZE]; /* send message */
-   unsigned int msg_len;  /* length of message */
-   int bytes_sent, bytes_recd; /* number of bytes sent or received */
-   unsigned int i;  /* temporary loop variable */
+   //Message information to be used in this application
+   message_t *rec_message=(message_t *)malloc(sizeof(message_t));
+   message_t *ret_message=(message_t *)malloc(sizeof(message_t));
 
-   char visitor_name[80] = "Sobota-Stahl";
    unsigned int secret_code = 39629;
    char travel_loc[80] = "London";
 
@@ -74,26 +71,38 @@ int main(void) {
          close(sock_server);
          exit(1);
       }
- 
-      /* receive the message */
+      
+      rec_message->text=calloc(80, sizeof(char));
+      printf("made it here\n");
+      recv(sock_connection, rec_message, sizeof(rec_message)+sizeof(char)*80, 0);
+      printf("did not make it here\n");
 
-      bytes_recd = recv(sock_connection, sentence, STRING_SIZE, 0);
+      if (1){
+	 /*Convert message from network to host*/
+        rec_message->step_no=ntohs(rec_message->step_no);
+        rec_message->client_port_no=ntohs(rec_message->client_port_no);
+        rec_message->server_port_no=ntohs(rec_message->server_port_no);
+        rec_message->server_secret_no=ntohs(rec_message->server_secret_no);
+        for (int i=0; rec_message->text[i] || i<80; i++) {
+                rec_message->text[i]=tolower(rec_message->text[i]);
+        }
 
-      if (bytes_recd > 0){
-         printf("Received Sentence is:\n");
-         printf("%s", sentence);
-         printf("\nwith length %d\n\n", bytes_recd);
+	printf("Rec step_no: %hu\n", rec_message->step_no);
+        printf("Rec client_port_no: %hu\n", rec_message->client_port_no);
+        printf("Rec server_port_no: %hu\n", rec_message->server_port_no);
+        printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
+        printf("Tec text: %s\n", rec_message->text);
 
-        /* prepare the message to send */
+	ret_message->step_no=htons(1);
+        ret_message->client_port_no=htons(rec_message->client_port_no);
+        ret_message->server_port_no=htons(SERV_TCP_PORT);
+        ret_message->server_secret_no=htons(secret_code);
+        ret_message->text=(char*)calloc(80,sizeof(char));
+        ret_message->text=rec_message->text;
 
-         msg_len = bytes_recd;
-
-         for (i=0; i<msg_len; i++)
-            modifiedSentence[i] = toupper (sentence[i]);
 
          /* send message */
- 
-         bytes_sent = send(sock_connection, modifiedSentence, msg_len, 0);
+         send(sock_connection, ret_message, sizeof(ret_message)+sizeof(char)*80, 0);
       }
 
       /* close the socket */
