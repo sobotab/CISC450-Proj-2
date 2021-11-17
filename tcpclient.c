@@ -14,7 +14,10 @@ int main(void) {
                                         address */
    char server_hostname[STRING_SIZE]="localhost"; /* Server's hostname */
    unsigned short server_port=46238;  /* Port number used by server (remote port) */
-   unsigned short client_port=CLNT_TCP_PORT; /* Port number used by client (local port) */
+   unsigned short client_port=CLNT_TCP_PORT; /* Port number used by client (localort)*/
+   int step_no=1;
+   int server_port_no=0;
+   int server_secret_no=0;
 
    //Message information to be used in this application
    message_t *rec_message=(message_t *)malloc(sizeof(message_t));
@@ -48,45 +51,45 @@ int main(void) {
       close(sock_client);
       exit(1);
    }
-
-   /* Clear server address structure and initialize with server address */
-   memset(&server_addr, 0, sizeof(server_addr));
-   server_addr.sin_family = AF_INET;
-   memcpy((char *)&server_addr.sin_addr, server_hp->h_addr,
-                                    server_hp->h_length);
-   server_addr.sin_port = htons(server_port);
+   for(;;) {
+   	/* Clear server address structure and initialize with server address */
+   	memset(&server_addr, 0, sizeof(server_addr));
+   	server_addr.sin_family = AF_INET;
+   	memcpy((char *)&server_addr.sin_addr, server_hp->h_addr,
+        	                            server_hp->h_length);
 
     /* connect to the server */
-   if (connect(sock_client, (struct sockaddr *) &server_addr, 
-                                    sizeof (server_addr)) < 0) {
-      perror("Client: can't connect to server");
-      close(sock_client);
-      exit(1);
-   }
-	   /*
-	message_t tmp_message;
-	FILE* file = fopen("Travel.txt", 'r');
-	char line[STRING_SIZE];
-	char *travel_info;
-	
-	while (fgets(line, sizeof(line), file)) {
-		tmp_message.step_no=atoi(strtok(line, ' '));
-		tmp_message.client_port_no=atoi(strtok(NULL, ' '));
-		tmp_message.server_port_no=atoi(strtok(NULL, ' '));
-		tmp_message.server_secret_no=atoi(strtok(NULL, ' '));
-		tmp_message.server_secret_no=atoi(strtok(NULL, ' '));
-	}
-	fclose("Travel.txt");
-	*/
-	
-	//step1	
+	server_addr.sin_port = htons(server_port);
+
+   	if (connect(sock_client, (struct sockaddr *) &server_addr, 
+        	                            sizeof (server_addr)) < 0) {
+      		perror("Client: can't connect to server");
+      		close(sock_client);
+      		exit(1);
+   	}
+		
    	/*Create message*/
-	ret_message->step_no=htons(1);
 	ret_message->client_port_no=htons(client_port);
-	ret_message->server_port_no=htons(46238);
-	ret_message->server_secret_no=htons(39629);
-	strcpy(ret_message->text, "Hello World!");
-  
+	if(step_no == 1) {
+		ret_message->step_no=1;
+		ret_message->server_port_no=0;
+		ret_message->server_secret_no=0;
+		strcpy(ret_message->text, "*");
+	} else if (step_no == 2) {
+		ret_message->step_no=2;
+		ret_message->server_port_no=server_port_no;
+		ret_message->server_secret_no=0;
+		strcpy(ret_message->text, "*");
+	} else if (step_no == 3) {
+		ret_message->step_no=3;
+		ret_message->server_port_no=server_port_no;
+		ret_message->server_secret_no=server_secret_no;
+		strcpy(ret_message->text, "sobota-stahl");
+	}
+	ret_message->step_no=htons(ret_message->step_no);
+	ret_message->server_port_no=htons(ret_message->server_port_no);
+	ret_message->server_secret_no=htons(ret_message->server_secret_no);
+
    	/* send message */
    	send(sock_client, ret_message, sizeof(message_t), 0);
 
@@ -107,6 +110,51 @@ int main(void) {
 	printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
 	printf("Rec text: %s\n", rec_message->text);
 
-   /* close the socket */
-   close (sock_client);
+	FILE* travel_log = fopen("Travel.txt", "r");
+      	FILE* tmp_travel_log = fopen("tempTravel.txt", "a");
+      	char line[STRING_SIZE];
+      	char new_line[STRING_SIZE];
+	char error_line[STRING_SIZE];
+	unsigned short int tmp_server_port;
+      	new_line[0]='\0';
+
+      	//Saves visitor info and keeps old info as well
+      	while (fgets(line, sizeof(line), travel_log)) {
+              strtok(line, ",");
+              tmp_server_port=atoi(strtok(NULL, ","));
+              if (tmp_server_port != rec_message->server_port_no) {
+                      fprintf(tmp_travel_log, "%s", line);
+              } else {
+		      strcpy(error_line, line);
+	      }
+      	}
+	char tmp_str[STRING_SIZE];
+	if (step_no == rec_message->step_no) {
+             	memset(tmp_str, '\0', STRING_SIZE);
+             	sprintf(tmp_str, "%d", rec_message->step_no);
+             	strcat(new_line, tmp_str);
+             	strcat(new_line, ",");
+             	memset(tmp_str, '\0', STRING_SIZE);
+             	sprintf(tmp_str, "%d", rec_message->server_port_no);
+             	strcat(new_line, tmp_str);
+		memset(tmp_str, '\0', STRING_SIZE);
+		sprintf(tmp_str, "%d", rec_message->server_secret_no);
+             	strcat(new_line, ",");
+             	strcat(new_line, rec_message->text);
+             	strcat(new_line, "\n");
+		fprintf(tmp_travel_log, "%s", new_line);
+	} else {
+		fprintf(tmp_travel_log, "%s", error_line);
+	}
+	fclose(travel_log);
+     	fclose(tmp_travel_log);
+     	system("cp ./tempTravel.txt ./Travel.txt");
+     	system("> ./tempTravel.txt");
+
+	if (step_no < 3) {
+		step_no++;
+	}
+   	/* close the socket */
+   	close (sock_client);
+   }
 }
