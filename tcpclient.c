@@ -83,8 +83,8 @@ int main(void) {
    	/*Create message*/
 	ret_message->step_no=htons(1);
 	ret_message->client_port_no=htons(client_port);
-	ret_message->server_port_no=htons(0);
-	ret_message->server_secret_no=htons(0);
+	ret_message->server_port_no=htons(46238);
+	ret_message->server_secret_no=htons(39629);
 	strcpy(ret_message->text, "Hello World!");
   
    	/* send message */

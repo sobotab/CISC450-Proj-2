@@ -91,50 +91,73 @@ int main(void) {
       printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
       printf("Rec text: %s\n", rec_message->text);
 
-      message_t tmp_message;
       FILE* visitors_log = fopen("Visitors.txt", "r");
       FILE* tmp_visitors_log = fopen("tempVisitors.txt", "a");
       char line[STRING_SIZE];
-      char newLine[STRING_SIZE];
+      char new_line[STRING_SIZE];
+      new_line[0]='\0';
 
+      //Saves visitor info and keeps old info as well
       while (fgets(line, sizeof(line), visitors_log)) {
 	      strtok(line, ",");
-	      tmp_client_port=atoi(strok(NULL, ","));
+	      tmp_client_port=atoi(strtok(NULL, ","));
 	      if (tmp_client_port != rec_message->client_port_no) {
 		      fprintf(tmp_visitors_log, "%s", line);
 	      }
       }
-      unsigned short int tmp_str[1];
-      sprintf(tmp_str, "%d", rec_message->step_no);
-      strcat(newLine, tmp_str);
-      strcat(newLine, ",");
-      unsigned short int tmp_str[5];
-      sprintf(tmp_str, "%d", rec_message->client_port_no);
-      strcat(newLine, ",");
-      strcat(newLine, rec_message->text);
-      strcat(newLine, "\n");
-      fprintf(tmp_visitors_log, newLine);
 
-      fclose(visitors_log);
-      fclose(tmp_visitors_log);
-      system("cp ./tempVisitors.txt ./Visitors.txt");
-      system("> ./tempVisitors.txt");
-
-
-     if(1) {
-     	     ret_message->step_no=htons(1);
-             ret_message->client_port_no=htons(rec_message->client_port_no);
-             ret_message->server_port_no=htons(SERV_TCP_PORT);
-             ret_message->server_secret_no=htons(secret_code);
-             strcpy(ret_message->text, rec_message->text);
-     } else if (step_no == 2) {
-		
-     } else if (step_no == 3) {
-	
+     //Steps for the different phases
+     char tmp_str[STRING_SIZE];
+     ret_message->client_port_no=rec_message->client_port_no;
+     ret_message->server_port_no=SERV_TCP_PORT;
+     if (rec_message->server_port_no == SERV_TCP_PORT) {
+	     ret_message->server_secret_no = secret_code;
+	     if (rec_message->server_secret_no == secret_code) {
+	     	ret_message->step_no=3;
+	     	strcpy(ret_message->text, travel_loc);
+     	     } else if (rec_message->server_port_no == SERV_TCP_PORT) {
+	     	ret_message->step_no=2;
+	     	strcpy(ret_message->text, "*");
+	     }
+      	     memset(tmp_str, '\0', STRING_SIZE);
+     	     sprintf(tmp_str, "%d", rec_message->step_no);
+             strcat(new_line, tmp_str);
+             strcat(new_line, ",");
+             memset(tmp_str, '\0', STRING_SIZE);
+             sprintf(tmp_str, "%d", rec_message->client_port_no);
+             strcat(new_line, tmp_str);
+             strcat(new_line, ",");
+             strcat(new_line, rec_message->text);
+             strcat(new_line, "\n");
      } else {
-	     printf("Error: \n");
+	     ret_message->step_no=1;
+	     ret_message->server_secret_no=0;
+	     ret_message->server_secret_no=0;
+	     strcpy(ret_message->text, "*");
+      	     memset(tmp_str, '\0', STRING_SIZE);
+             sprintf(tmp_str, "%d", 1);
+             strcat(new_line, tmp_str);
+             strcat(new_line, ",");
+             memset(tmp_str, '\0', STRING_SIZE);
+             sprintf(tmp_str, "%d", rec_message->client_port_no);
+             strcat(new_line, tmp_str);
+             strcat(new_line, ",");
+             strcat(new_line, "*");
+             strcat(new_line, "\n");
      }
 
+     fprintf(tmp_visitors_log, "%s", new_line);
+
+     fclose(visitors_log);
+     fclose(tmp_visitors_log);
+     system("cp ./tempVisitors.txt ./Visitors.txt");
+     system("> ./tempVisitors.txt");
+     
+
+     ret_message->step_no=htons(ret_message->step_no);
+     ret_message->client_port_no=htons(ret_message->client_port_no);
+     ret_message->server_port_no=htons(ret_message->server_port_no);
+     ret_message->server_secret_no=htons(ret_message->server_secret_no);
      /* send message */
      send(sock_connection, ret_message, sizeof(message_t), 0);
 
