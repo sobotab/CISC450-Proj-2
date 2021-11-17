@@ -97,6 +97,7 @@ int main(void) {
       char new_line[STRING_SIZE];
       new_line[0]='\0';
 
+      //Saves visitor info and keeps old info as well
       while (fgets(line, sizeof(line), visitors_log)) {
 	      strtok(line, ",");
 	      tmp_client_port=atoi(strtok(NULL, ","));
@@ -125,7 +126,7 @@ int main(void) {
       system("cp ./tempVisitors.txt ./Visitors.txt");
       system("> ./tempVisitors.txt");
 
-
+     //Steps for the different phases
      if(1) {
      	     ret_message->step_no=htons(1);
              ret_message->client_port_no=htons(rec_message->client_port_no);
