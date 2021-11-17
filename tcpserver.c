@@ -91,29 +91,34 @@ int main(void) {
       printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
       printf("Rec text: %s\n", rec_message->text);
 
-      message_t tmp_message;
       FILE* visitors_log = fopen("Visitors.txt", "r");
       FILE* tmp_visitors_log = fopen("tempVisitors.txt", "a");
       char line[STRING_SIZE];
-      char newLine[STRING_SIZE];
+      char new_line[STRING_SIZE];
+      new_line[0]='\0';
 
       while (fgets(line, sizeof(line), visitors_log)) {
 	      strtok(line, ",");
-	      tmp_client_port=atoi(strok(NULL, ","));
+	      tmp_client_port=atoi(strtok(NULL, ","));
+	      printf("Visitors Client Port: %d, Received Messsage Port: %d\n", tmp_client_port, rec_message->client_port_no);
 	      if (tmp_client_port != rec_message->client_port_no) {
+		      printf("made it here\n\n");
 		      fprintf(tmp_visitors_log, "%s", line);
 	      }
       }
-      unsigned short int tmp_str[1];
+      unsigned short int tmp_str[STRING_SIZE];
+      memset(tmp_str, NULL, STRING_SIZE);
       sprintf(tmp_str, "%d", rec_message->step_no);
-      strcat(newLine, tmp_str);
-      strcat(newLine, ",");
-      unsigned short int tmp_str[5];
+      strcat(new_line, tmp_str);
+      strcat(new_line, ",");
+      memset(tmp_str, NULL, STRING_SIZE);
       sprintf(tmp_str, "%d", rec_message->client_port_no);
-      strcat(newLine, ",");
-      strcat(newLine, rec_message->text);
-      strcat(newLine, "\n");
-      fprintf(tmp_visitors_log, newLine);
+      strcat(new_line, tmp_str);
+      strcat(new_line, ",");
+      strcat(new_line, rec_message->text);
+      strcat(new_line, "\n");
+      printf("new_line: %s\n", new_line);
+      fprintf(tmp_visitors_log, new_line);
 
       fclose(visitors_log);
       fclose(tmp_visitors_log);
