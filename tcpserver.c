@@ -85,11 +85,11 @@ int main(void) {
               rec_message->text[i]=tolower(rec_message->text[i]);
       }
 
-      printf("Rec step_no: %hu\n", rec_message->step_no);
-      printf("Rec client_port_no: %hu\n", rec_message->client_port_no);
-      printf("Rec server_port_no: %hu\n", rec_message->server_port_no);
-      printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
-      printf("Rec text: %s\n", rec_message->text);
+      //printf("Rec step_no: %hu\n", rec_message->step_no);
+      //printf("Rec client_port_no: %hu\n", rec_message->client_port_no);
+      //printf("Rec server_port_no: %hu\n", rec_message->server_port_no);
+      //printf("Rec server_secret_no: %hu\n", rec_message->server_secret_no);
+      //printf("Rec text: %s\n", rec_message->text);
 
       FILE* visitors_log = fopen("Visitors.txt", "r");
       FILE* tmp_visitors_log = fopen("tempVisitors.txt", "a");
@@ -99,13 +99,15 @@ int main(void) {
 
       //Saves visitor info and keeps old info as well
       while (fgets(line, sizeof(line), visitors_log)) {
-	      strtok(line, ",");
+	      strcat(new_line, line);
+	      strtok(new_line, ",");
 	      tmp_client_port=atoi(strtok(NULL, ","));
 	      if (tmp_client_port != rec_message->client_port_no) {
 		      fprintf(tmp_visitors_log, "%s", line);
 	      }
-      }
-
+     }
+     memset(new_line, '\0', STRING_SIZE);
+     
      //Steps for the different phases
      char tmp_str[STRING_SIZE];
      ret_message->client_port_no=rec_message->client_port_no;

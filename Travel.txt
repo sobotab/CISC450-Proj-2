@@ -1,0 +1,7 @@
+3,48359,54321,seattle-washington
+3,48375,42,constantinople
+3,48238,39629,london
+3,48180,2222,honolulu-hawaii
+3,48450,3333,orlando-florida
+3,48133,5877,wilmington
+3,48284,10,charleston-south carolina

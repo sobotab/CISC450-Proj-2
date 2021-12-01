@@ -10,8 +10,8 @@
 #define STRING_SIZE 1024
 
 // I don't know what the different phase port numbers are for yet, but they are stored here
-#define SERV_TCP_PORT 46238
-#define SERV_TCP_PORT_1 48238
+#define SERV_TCP_PORT_1 46238
+#define SERV_TCP_PORT 48238
 //Client port number
 #define CLNT_TCP_PORT 45238
 
