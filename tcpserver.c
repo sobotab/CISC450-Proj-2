@@ -74,7 +74,7 @@ int main(void) {
          exit(1);
       }
       
-      recv(sock_connection, rec_message, sizeof(message_t), 0); 
+      recv(sock_connection, rec_message, sizeof(message_t), 0);
 
       /*Convert message from network to host*/
       rec_message->step_no=ntohs(rec_message->step_no);

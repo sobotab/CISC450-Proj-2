@@ -1,0 +1,248 @@
+Script started on 2021-12-02 15:13:37-0500
+sobotab@cisc450:~/CISC450-Proj-2$ make run-client
+./group20-tcpclient
+Message Sent: 1, 0, 0, *
+Message Rcvd: 1, 48274, 0, *
+Message Sent: 1, 0, 0, *
+Message Rcvd: 1, 48298, 0, *
+Message Sent: 1, 0, 0, *
+Message Rcvd: 49290, 0, 0, '„y÷
+Message Sent: 1, 0, 0, *
+Message Rcvd: 1, 48575, 0, *
+Message Sent: 1, 0, 0, *
+Message Rcvd: 1, 48777, 0, *
+Message Sent: 1, 0, 0, *
+Message Rcvd: 1, 48821, 0, *
+Message Sent: 1, 0, 0, *
+Message Rcvd: 1, 48925, 0, *
+Client: can't bind to local address
+: Address already in use
+Makefile:9: recipe for target 'run-client' failed
+make: *** [run-client] Error 1
+sobotab@cisc450:~/CISC450-Proj-2$ make run-client
+./group20-tcpclient
+Client: can't bind to local address
+: Address already in use
+Makefile:9: recipe for target 'run-client' failed
+make: *** [run-client] Error 1
+sobotab@cisc450:~/CISC450-Proj-2$ mak[K[K[Kps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.4 225412  8660 ?        Ss   Sep06   1:09 /sbin/init nosplash
+root         2  0.0  0.0      0     0 ?        S    Sep06   0:00 [kthreadd]
+root         4  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kworker/0:0H]
+root         6  0.0  0.0      0     0 ?        I<   Sep06   0:00 [mm_percpu_wq]
+root         7  0.0  0.0      0     0 ?        S    Sep06   0:00 [ksoftirqd/0]
+root         8  0.0  0.0      0     0 ?        I    Sep06  36:05 [rcu_sched]
+root         9  0.0  0.0      0     0 ?        I    Sep06   0:00 [rcu_bh]
+root        10  0.0  0.0      0     0 ?        S    Sep06   0:00 [migration/0]
+root        11  0.0  0.0      0     0 ?        S    Sep06   0:28 [watchdog/0]
+root        12  0.0  0.0      0     0 ?        S    Sep06   0:00 [cpuhp/0]
+root        13  0.0  0.0      0     0 ?        S    Sep06   0:00 [cpuhp/1]
+root        14  0.0  0.0      0     0 ?        S    Sep06   0:27 [watchdog/1]
+root        15  0.0  0.0      0     0 ?        S    Sep06   0:00 [migration/1]
+root        16  0.0  0.0      0     0 ?        S    Sep06   0:00 [ksoftirqd/1]
+root        18  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kworker/1:0H]
+root        19  0.0  0.0      0     0 ?        S    Sep06   0:00 [cpuhp/2]
+root        20  0.0  0.0      0     0 ?        S    Sep06   0:26 [watchdog/2]
+root        21  0.0  0.0      0     0 ?        S    Sep06   0:00 [migration/2]
+root        22  0.0  0.0      0     0 ?        S    Sep06   0:00 [ksoftirqd/2]
+root        24  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kworker/2:0H]
+root        25  0.0  0.0      0     0 ?        S    Sep06   0:00 [cpuhp/3]
+root        26  0.0  0.0      0     0 ?        S    Sep06   0:25 [watchdog/3]
+root        27  0.0  0.0      0     0 ?        S    Sep06   0:00 [migration/3]
+root        28  0.0  0.0      0     0 ?        S    Sep06   0:09 [ksoftirqd/3]
+root        30  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kworker/3:0H]
+root        31  0.0  0.0      0     0 ?        S    Sep06   0:00 [kdevtmpfs]
+root        32  0.0  0.0      0     0 ?        I<   Sep06   0:00 [netns]
+root        33  0.0  0.0      0     0 ?        S    Sep06   0:00 [rcu_tasks_kthre]
+root        34  0.0  0.0      0     0 ?        S    Sep06   0:00 [kauditd]
+root        36  0.0  0.0      0     0 ?        S    Sep06   0:04 [khungtaskd]
+root        37  0.0  0.0      0     0 ?        S    Sep06   0:00 [oom_reaper]
+root        38  0.0  0.0      0     0 ?        I<   Sep06   0:00 [writeback]
+root        39  0.0  0.0      0     0 ?        S    Sep06   0:00 [kcompactd0]
+root        40  0.0  0.0      0     0 ?        SN   Sep06   0:00 [ksmd]
+root        41  0.0  0.0      0     0 ?        SN   Sep06   0:00 [khugepaged]
+root        42  0.0  0.0      0     0 ?        I<   Sep06   0:00 [crypto]
+root        43  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kintegrityd]
+root        44  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kblockd]
+root        45  0.0  0.0      0     0 ?        I<   Sep06   0:00 [ata_sff]
+root        46  0.0  0.0      0     0 ?        I<   Sep06   0:00 [md]
+root        47  0.0  0.0      0     0 ?        I<   Sep06   0:00 [edac-poller]
+root        48  0.0  0.0      0     0 ?        I<   Sep06   0:00 [devfreq_wq]
+root        49  0.0  0.0      0     0 ?        I<   Sep06   0:00 [watchdogd]
+root        54  0.0  0.0      0     0 ?        S    Sep06   0:07 [kswapd0]
+root        56  0.0  0.0      0     0 ?        S    Sep06   0:00 [ecryptfs-kthrea]
+root        98  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kthrotld]
+root        99  0.0  0.0      0     0 ?        I<   Sep06   0:00 [acpi_thermal_pm]
+root       101  0.0  0.0      0     0 ?        S    Sep06   0:00 [scsi_eh_0]
+root       102  0.0  0.0      0     0 ?        I<   Sep06   0:00 [scsi_tmf_0]
+root       103  0.0  0.0      0     0 ?        S    Sep06   0:00 [scsi_eh_1]
+root       104  0.0  0.0      0     0 ?        I<   Sep06   0:00 [scsi_tmf_1]
+root       109  0.0  0.0      0     0 ?        I<   Sep06   0:00 [ipv6_addrconf]
+root       118  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kstrp]
+root       135  0.0  0.0      0     0 ?        I<   Sep06   0:00 [charger_manager]
+root       193  0.0  0.0      0     0 ?        I<   Sep06   0:00 [ttm_swap]
+root       195  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kdmflush]
+root       196  0.0  0.0      0     0 ?        I<   Sep06   0:00 [bioset]
+root       198  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kdmflush]
+root       199  0.0  0.0      0     0 ?        I<   Sep06   0:00 [bioset]
+root       273  0.0  0.0      0     0 ?        I<   Sep06   0:02 [kworker/2:1H]
+root       277  0.0  0.0      0     0 ?        S    Sep06   0:20 [jbd2/dm-0-8]
+root       278  0.0  0.0      0     0 ?        I<   Sep06   0:00 [ext4-rsv-conver]
+root       316  0.0  0.0      0     0 ?        I<   Sep06   0:02 [kworker/0:1H]
+root       334  0.0  6.2 443424 120728 ?       S<s  Sep06   0:39 /lib/systemd/systemd-journald
+root       345  0.0  0.0      0     0 ?        I<   Sep06   0:03 [kworker/1:1H]
+root       356  0.0  0.0      0     0 ?        I<   Sep06   0:00 [rpciod]
+root       357  0.0  0.0      0     0 ?        I<   Sep06   0:00 [xprtiod]
+root       358  0.0  0.1  39604  3608 ?        Ss   Sep06   0:12 /lib/systemd/systemd-udevd
+root       359  0.0  0.0 105912  1840 ?        Ss   Sep06   0:00 /sbin/lvmetad -f
+systemd+   372  0.0  0.2  80044  4628 ?        Ss   Sep06   0:21 /lib/systemd/systemd-networkd
+root       382  0.0  0.0      0     0 ?        I<   Sep06   0:43 [kworker/3:1H]
+root       389  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kdmflush]
+root       456  0.0  0.0      0     0 ?        I<   Sep06   0:00 [bioset]
+root       457  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kcryptd_io]
+root       458  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kcryptd]
+root       459  0.0  0.0      0     0 ?        S    Sep06   0:00 [dmcrypt_write]
+root       461  0.0  0.0      0     0 ?        I<   Sep06   0:00 [bioset]
+root       473  0.0  0.0      0     0 ?        S    Sep06   0:00 [jbd2/dm-1-8]
+root       474  0.0  0.0      0     0 ?        I<   Sep06   0:00 [ext4-rsv-conver]
+root       483  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kdmflush]
+root       484  0.0  0.0      0     0 ?        I<   Sep06   0:00 [bioset]
+root       485  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kcryptd_io]
+root       486  0.0  0.0      0     0 ?        I<   Sep06   0:00 [kcryptd]
+root       487  0.0  0.0      0     0 ?        S    Sep06   0:00 [dmcrypt_write]
+root       488  0.0  0.0      0     0 ?        I<   Sep06   0:00 [bioset]
+root       495  0.0  0.0      0     0 ?        S    Sep06   0:00 [jbd2/dm-3-8]
+root       496  0.0  0.0      0     0 ?        I<   Sep06   0:00 [ext4-rsv-conver]
+root       512  0.0  0.1  47608  3116 ?        Ss   Sep06   0:14 /sbin/rpcbind -f -w
+systemd+   513  0.0  0.2  70620  5244 ?        Ss   Sep06   0:29 /lib/systemd/systemd-resolved
+root       562  0.0  0.1  31420  2320 ?        Ss   Sep06   0:00 /usr/sbin/rpc.gssd
+message+   568  0.0  0.2  47908  4024 ?        Ss   Sep06   0:16 /usr/bin/dbus-daemon --system --address=sy
+syslog     569  0.0  0.1 260744  3392 ?        Ssl  Sep06   0:06 /usr/sbin/rsyslogd -n
+root       570  0.0  0.1  31328  2912 ?        Ss   Sep06   0:13 /usr/sbin/cron -f
+root       576  0.0  0.3 279612  5840 ?        Ssl  Sep06   2:43 /usr/lib/accountsservice/accounts-daemon
+root       580  0.0  0.1 774972  3496 ?        Ssl  Sep06   1:23 /usr/sbin/nscd
+root       586  0.0  0.2  62660  5660 ?        Ss   Sep06   0:20 /lib/systemd/systemd-logind
+root       587  0.0  0.1 110528  3140 ?        Ssl  Sep06   5:38 /usr/sbin/irqbalance --foreground
+root       598  0.0  0.8 162392 16060 ?        Ssl  Sep06   0:03 /usr/bin/python3 /usr/bin/networkd-dispatc
+root       617  0.0  0.9 178988 18588 ?        Ssl  Sep06   0:00 /usr/bin/python3 /usr/share/unattended-upg
+root       630  0.0  0.0   7720   756 ttyS0    Ss+  Sep06   0:00 /sbin/agetty -o -p -- \u --keep-baud 11520
+root       634  0.0  0.0   7944   636 tty1     Ss+  Sep06   0:00 /sbin/agetty -o -p -- \u --noclear tty1 li
+root       686  0.0  0.1 144212  2164 ?        Sl   Sep06   1:18 /usr/sbin/ypbind -no-dbus
+root       791  0.0  0.1  61932  2792 ?        Ss   Sep06   0:28 /usr/lib/postfix/sbin/master -w
+postfix    793  0.0  0.2  63676  4244 ?        S    Sep06   0:06 qmgr -l -t unix -u
+root       800  0.0  0.1 406848  3528 ?        Ssl  Sep06   1:39 /usr/sbin/automount --pid-file /var/run/au
+statd      875  0.0  0.1  36296  3080 ?        Ss   Sep06   0:00 /sbin/rpc.statd --no-notify
+root       882  0.0  0.0      0     0 ?        I<   Sep06   0:00 [nfsiod]
+tharris   1448  0.0  0.3  76784  7616 ?        Ss   Nov30   0:00 /lib/systemd/systemd --user
+tharris   1449  0.0  0.1 266848  2500 ?        S    Nov30   0:00 (sd-pam)
+ntp       2712  0.0  0.1  91564  2248 ?        Ssl  Oct30   3:58 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 
+root      3111  0.0  0.0      0     0 ?        S    Nov17   0:00 [lockd]
+sethi     3365  0.0  0.3  76884  7728 ?        Ss   Nov17   0:01 /lib/systemd/systemd --user
+sethi     3366  0.0  0.1 266848  2500 ?        S    Nov17   0:00 (sd-pam)
+sethi     3580  0.0  0.0   4532   796 ?        S    Nov17   0:00 ./proj2server
+camfrey   4606  0.0  0.3  76868  7680 ?        Ss   Oct10   0:07 /lib/systemd/systemd --user
+camfrey   4607  0.0  0.1 266768  2352 ?        S    Oct10   0:00 (sd-pam)
+camfrey   4648  0.0  0.0  11316   316 ?        Ss   Oct10   0:00 ssh-agent -s
+root      6707  0.0  0.0      0     0 ?        I    Dec01   0:01 [kworker/3:1]
+root      6754  0.0  0.0      0     0 ?        I    Dec01   0:01 [kworker/0:1]
+mendozac  7181  0.0  0.3  76788  7668 ?        Ss   Dec01   0:00 /lib/systemd/systemd --user
+mendozac  7182  0.0  0.1 266848  2504 ?        S    Dec01   0:00 (sd-pam)
+mendozac  9297  0.0  0.0   4520  1684 ?        S    00:47   0:00 ./tcpserver
+camfrey  11974 99.9  0.0   4524   796 ?        R    11:01 252:35 ./tcpserver_G06
+root     13040  0.0  0.0      0     0 ?        I    11:22   0:00 [kworker/1:2]
+root     13942  0.0  0.0      0     0 ?        I    12:29   0:00 [kworker/2:0]
+root     14115  0.0  0.3 102328  7568 ?        Ss   12:46   0:00 sshd: calibobo [priv]
+calibobo 14122  0.0  0.3  76784  7588 ?        Ss   12:47   0:00 /lib/systemd/systemd --user
+calibobo 14123  0.0  0.1 266848  2504 ?        S    12:47   0:00 (sd-pam)
+calibobo 14152  0.0  0.2 102328  4728 ?        S    12:47   0:00 sshd: calibobo@pts/1
+calibobo 14153  0.0  0.2  14532  4928 pts/1    Ss+  12:47   0:00 -bash
+root     14170  0.0  0.3 102328  7716 ?        Ss   12:52   0:00 sshd: milesphi [priv]
+milesphi 14177  0.0  0.3  76784  7660 ?        Ss   12:52   0:00 /lib/systemd/systemd --user
+milesphi 14178  0.0  0.1 266848  2504 ?        S    12:52   0:00 (sd-pam)
+milesphi 14207  0.0  0.2 102328  5256 ?        S    12:52   0:00 sshd: milesphi@notty
+milesphi 14208  0.0  0.0   5036   952 ?        Ss   12:52   0:00 /usr/lib/openssh/sftp-server
+manfre   14219  0.0  0.4  76892  7800 ?        Ss   Oct20   0:05 /lib/systemd/systemd --user
+manfre   14220  0.0  0.1 266768  2372 ?        S    Oct20   0:00 (sd-pam)
+root     14294  0.0  0.3 102304  7548 ?        Ss   12:58   0:00 sshd: calibobo [priv]
+calibobo 14315  0.0  0.2 102304  5212 ?        S    12:58   0:00 sshd: calibobo@pts/5
+calibobo 14316  0.0  0.2  14272  4528 pts/5    Ss+  12:58   0:00 -bash
+root     14384  0.0  0.4 102328  7772 ?        Ss   13:22   0:00 sshd: milesphi [priv]
+milesphi 14405  0.0  0.2 102328  5032 ?        S    13:22   0:00 sshd: milesphi@pts/0
+milesphi 14406  0.0  0.2  14272  4796 pts/0    Ss+  13:22   0:00 -bash
+root     14425  0.0  0.3 102328  7628 ?        Ss   13:23   0:00 sshd: milesphi [priv]
+milesphi 14446  0.0  0.2 102328  4868 ?        S    13:23   0:00 sshd: milesphi@pts/6
+milesphi 14447  0.0  0.2  14272  4600 pts/6    Ss+  13:23   0:00 -bash
+root     14527  0.0  0.0      0     0 ?        I    13:36   0:01 [kworker/u8:0]
+divyak   14555  0.0  0.3  76784  7612 ?        Ss   13:44   0:00 /lib/systemd/systemd --user
+divyak   14556  0.0  0.1 266848  2504 ?        S    13:44   0:00 (sd-pam)
+root     14670  0.0  0.3 102280  7540 ?        Ss   13:51   0:00 sshd: sethi [priv]
+sethi    14692  0.0  0.2 102280  4972 ?        S    13:51   0:00 sshd: sethi@pts/4
+sethi    14693  0.0  0.1  13576  3608 pts/4    Ss+  13:51   0:00 -csh
+sethi    14731  0.0  0.0   4524   800 pts/4    S    13:53   0:00 ./proj2server
+root     14732  0.0  0.3 102304  7380 ?        Ss   13:53   0:00 sshd: divyak [priv]
+divyak   14757  0.0  0.2 102304  5024 ?        S    13:54   0:00 sshd: divyak@notty
+divyak   14758  0.0  0.1  13124  3332 ?        Ss   13:54   0:00 bash
+sethi    14838  0.0  0.0   4524   728 pts/4    S    13:54   0:00 ./proj2server
+root     16464  0.0  0.2  66428  5796 ?        Ss   Nov04   0:01 /usr/sbin/sshd -D
+caldavis 17158  0.0  0.3  76784  7572 ?        Ss   14:07   0:00 /lib/systemd/systemd --user
+caldavis 17159  0.0  0.1 266848  2504 ?        S    14:07   0:00 (sd-pam)
+caldavis 17229  0.0  0.0   4520  1608 ?        S    14:10   0:00 ./group03_server
+manfre   17274  0.0  0.0  11316   320 ?        Ss   Oct20   0:00 ssh-agent -s
+root     17355  0.0  0.3 102304  7356 ?        Ss   14:16   0:00 sshd: divyak [priv]
+divyak   17376  0.0  0.2 102304  4776 ?        S    14:16   0:00 sshd: divyak@notty
+divyak   17377  0.0  0.1  13024  3408 ?        Ss   14:16   0:00 bash
+root     17530  0.0  0.4 102328  7780 ?        Ss   14:17   0:00 sshd: divyak [priv]
+divyak   17553  0.1  0.2 102616  5556 ?        S    14:17   0:05 sshd: divyak@pts/11
+divyak   17554  0.0  0.2  14372  4812 pts/11   Ss+  14:17   0:00 -bash
+root     17625  0.0  0.3 102328  7572 ?        Ss   14:20   0:00 sshd: divyak [priv]
+divyak   17646  0.0  0.2 102328  4940 ?        S    14:20   0:00 sshd: divyak@pts/10
+divyak   17647  0.0  0.2  14272  4520 pts/10   Ss+  14:20   0:00 -bash
+root     17674  0.0  0.3 102304  7328 ?        Ss   14:25   0:00 sshd: divyak [priv]
+divyak   17696  0.0  0.2 102304  4752 ?        S    14:25   0:00 sshd: divyak@notty
+divyak   17697  0.0  0.1  13024  3412 ?        Ss   14:25   0:00 bash
+divyak   17835  0.0  0.2  15772  4116 pts/11   T    14:33   0:00 nano tcpclient.c
+root     17861  0.0  0.3 102304  7380 ?        Ss   14:36   0:00 sshd: sobotab [priv]
+sobotab  17868  0.0  0.3  76660  7428 ?        Ss   14:36   0:00 /lib/systemd/systemd --user
+sobotab  17869  0.0  0.1 266848  2504 ?        S    14:36   0:00 (sd-pam)
+root     17870  0.0  0.0      0     0 ?        I    14:36   0:00 [kworker/0:2]
+sobotab  17899  0.0  0.2 102304  4656 ?        R    14:36   0:00 sshd: sobotab@pts/8
+sobotab  17900  0.0  0.2  14532  4808 pts/8    Ss   14:36   0:00 -bash
+root     17911  0.0  0.0      0     0 ?        I    14:36   0:01 [kworker/u8:1]
+postfix  17974  0.0  0.2  63556  4648 ?        S    14:37   0:00 pickup -l -t unix -u -c
+root     18508  0.0  0.0      0     0 ?        I    14:41   0:00 [kworker/3:2]
+calibobo 19268  0.0  0.0   4520  1628 pts/1    S    14:52   0:00 ./group01-server
+root     19276  0.0  0.0      0     0 ?        I    14:52   0:00 [kworker/1:1]
+root     19354  0.0  0.3 102304  7332 ?        Ss   14:54   0:00 sshd: rdean [priv]
+rdean    19375  0.0  0.3  76668  7496 ?        Ss   14:54   0:00 /lib/systemd/systemd --user
+rdean    19376  0.0  0.1 266848  2504 ?        S    14:54   0:00 (sd-pam)
+rdean    19405  0.0  0.2 102304  4648 ?        S    14:54   0:00 sshd: rdean@pts/12
+rdean    19406  0.0  0.2  14272  4432 pts/12   Ss+  14:54   0:00 -bash
+rdean    19423  0.0  0.0   4520  1632 pts/12   S    14:55   0:00 ./group04-server
+root     19999  0.0  0.0      0     0 ?        I    15:08   0:00 [kworker/u8:2]
+root     20000  0.0  0.0      0     0 ?        I    15:08   0:00 [kworker/2:1]
+root     20009  0.0  0.3 102304  7440 ?        Ss   15:08   0:00 sshd: zehezack [priv]
+zehezack 20016  0.0  0.3  76668  7376 ?        Ss   15:08   0:00 /lib/systemd/systemd --user
+zehezack 20017  0.0  0.1 266848  2504 ?        S    15:08   0:00 (sd-pam)
+zehezack 20046  0.0  0.2 102304  4656 ?        S    15:08   0:00 sshd: zehezack@pts/13
+zehezack 20047  0.0  0.2  14396  4808 pts/13   Ss+  15:08   0:00 -bash
+root     20059  0.0  0.3 102304  7404 ?        Ss   15:08   0:00 sshd: zehezack [priv]
+zehezack 20080  0.0  0.2 102304  4664 ?        S    15:08   0:00 sshd: zehezack@pts/14
+zehezack 20081  0.0  0.2  14404  5016 pts/14   Ss+  15:08   0:00 -bash
+root     20245  0.0  0.0      0     0 ?        I    15:10   0:00 [kworker/0:0]
+divyak   20344  0.0  0.0   7476   828 ?        S    15:13   0:00 sleep 180
+sobotab  20360  0.0  0.0  14008   956 pts/8    S+   15:13   0:00 script client.txt
+sobotab  20361  0.0  0.1  13236  3712 pts/15   Ss   15:13   0:00 bash -i
+divyak   20376  0.0  0.0   7476   792 ?        S    15:13   0:00 sleep 180
+divyak   20403  0.0  0.0   7476   796 ?        S    15:13   0:00 sleep 180
+root     20406  0.4  0.3 102304  7348 ?        Ss   15:13   0:00 sshd: divyak [priv]
+divyak   20427  0.0  0.2 102304  5024 ?        S    15:13   0:00 sshd: divyak@pts/16
+divyak   20428  1.0  0.2  14272  4636 pts/16   Ss+  15:13   0:00 -bash
+sobotab  20433  0.0  0.0  29132  1544 pts/15   R+   15:14   0:00 ps aux
+root     21477  0.0  0.0      0     0 ?        I<   Nov16   0:00 [kworker/u9:2]
+root     23480  0.0  0.0      0     0 ?        I<   Dec01   0:00 [kworker/u9:0]
+tharris  31819  0.0  0.0   4520  1604 ?        S    Dec01   0:00 ./group07-server
+sobotab@cisc450:~/CISC450-Proj-2$ exit
+exit
+
+Script done on 2021-12-02 15:14:04-0500

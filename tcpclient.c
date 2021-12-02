@@ -31,7 +31,7 @@ int main(void) {
    int done=0;
 
    //For each server port number in range
-   for(; server_port_no<48999; server_port_no++){
+   for(; server_port_no<48925; server_port_no++){
 	// Open Travel file for getting current server info
 	FILE* travel_log1 = fopen("Travel.txt", "r");
         char line1[STRING_SIZE];
@@ -52,11 +52,11 @@ int main(void) {
 		}
         }
 	// If current server is on step 3, continue to next number
+	fclose(travel_log1);
 	if(done) {
 		done=0;
 		continue;
 	}
-	fclose(travel_log1);
 
 
    	if ((sock_client = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0) {
