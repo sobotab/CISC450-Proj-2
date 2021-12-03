@@ -1,7 +1,10 @@
-2,48925,99,*
+3,48238,39629,london
+3,48274,101,lublin
+3,48284,10,charleston-south carolina
 3,48298,54321,long-island
-3,48522,0,middletown
-1,48522,0,*
+3,48359,54321,seattle-washington
+3,48375,42,constantinople
 3,48575,4444,tokyo-japan
-3,48777,7777,antarctica
 3,48821,4242,wilmington
+3,48861,808,moscow-russia
+3,48888,8888,washington-dc
